@@ -9,9 +9,8 @@ branches:
 install:
   - cp -n texlive* /tmp/
   - source /tmp/texlive_install.sh
-  - tlmgr install koma-script etoolbox logreq biblatex-apa csquotes siunitx oberdiek tocloft abstract pdfpages enumitem
-  - tlmgr install psnfss ms caption ec l3kernel l3packages zapfding symbol helvetic textpos glossaries xkeyval mfirstuc
-  - tlmgr install textcase xfor datatool substr fp tracklang pdfx iftex xcolor xmpincl float was
+  - tlmgr install multicol calc ifthen geometry amsmath amsthm amfonts amssymb color graphicx overpic
+  - tlmgr install hyperref listings
 
 cache:
   directories:
@@ -22,18 +21,15 @@ before_script:
   - source .version
 
 script:
-  - pdflatex -interaction=nonstopmode -halt-on-error BDA_FS19_Projektdokumentation.tex
-  - biber *.bcf
-  - makeglossaries BDA_FS19_Projektdokumentation
-  - pdflatex -interaction=nonstopmode -halt-on-error BDA_FS19_Projektdokumentation.tex
-  - pdflatex -interaction=nonstopmode -halt-on-error "\providecommand{\docversion}{${VERSION}.${TRAVIS_BUILD_NUMBER}} \input{BDA_FS19_Projektdokumentation.tex}"
+  - pdflatex -interaction=nonstopmode -halt-on-error Cheat_Sheet.tex
+  - pdflatex -interaction=nonstopmode -halt-on-error "\providecommand{\docversion}{${VERSION}.${TRAVIS_BUILD_NUMBER}} \input{Cheat_Sheet.tex}"
 
 deploy:
   - provider: releases
     api_key: $GIT_AUTH
     skip_cleanup: true
     prerelease: true
-    file: "BDA_FS19_Projektdokumentation.pdf"
+    file: "Cheat_Sheet.pdf"
     tag_name: "v${VERSION}.${TRAVIS_BUILD_NUMBER}"
     name: "v${VERSION}.${TRAVIS_BUILD_NUMBER}"
     on:
@@ -43,6 +39,6 @@ deploy:
     api_key: $GIT_AUTH
     skip_cleanup: true
     file:
-      - "BDA_FS19_Projektdokumentation.pdf"
+      - "Cheat_Sheet.pdf"
     on:
       tags: true
