@@ -1,0 +1,28 @@
+\section{Agents}
+Agents and Evironment, PEAS
+
+\subsection*{PEAS Evaluation}
+\subsubsection*{Evaluating an agent and its environment}
+\begin{lstlisting}[language=SQL]
+CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+    (create_definition,...)
+    [table_options]
+\end{lstlisting}
+
+create\_definition:
+
+\begin{lstlisting}[language=SQL]
+col_name column_definition
+| [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...)
+[index_option] ...
+| {INDEX|KEY} [index_name] [index_type] (index_col_name,...)
+[index_option] ...
+| [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY]
+[index_name] [index_type] (index_col_name,...)
+[index_option] ...
+| {FULLTEXT|SPATIAL} [INDEX|KEY] [index_name] (index_col_name,...)
+[index_option] ...
+| [CONSTRAINT [symbol]] FOREIGN KEY
+[index_name] (index_col_name,...) reference_definition
+| CHECK (expr)
+\end{lstlisting}
